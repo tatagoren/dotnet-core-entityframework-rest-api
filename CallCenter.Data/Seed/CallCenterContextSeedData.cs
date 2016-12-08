@@ -44,9 +44,9 @@ namespace CallCenter.Data.Seed
                     Email = "kavlak@gmail.com"
                 };
 
-                //_context.Customers.Add(customer1);
-                //_context.Customers.Add(customer2);
-                //_context.Customers.Add(customer3);
+                _context.Customers.Add(customer1);
+                _context.Customers.Add(customer2);
+                _context.Customers.Add(customer3);
 
             }
 
@@ -68,10 +68,11 @@ namespace CallCenter.Data.Seed
                     Name = "Campaign 2"
                 };
 
-                //_context.Campaigns.Add(campaign);
-                //_context.Campaigns.Add(campaign2);
+                _context.Campaigns.Add(campaign);
+                _context.Campaigns.Add(campaign2);
 
             }
+            await _context.SaveChangesAsync();
             if (!_context.Calls.Any())
             {
                 var call1 = new Call()
@@ -103,7 +104,7 @@ namespace CallCenter.Data.Seed
                 _context.Calls.Add(call3);
             }
 
-            await _context.SaveChangesAsync();
+            
         }
     }
 }

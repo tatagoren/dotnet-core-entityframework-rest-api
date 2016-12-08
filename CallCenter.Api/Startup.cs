@@ -10,11 +10,16 @@ using Microsoft.Extensions.Logging;
 using CallCenter.Data;
 using CallCenter.Data.Repository;
 using CallCenter.Data.Seed;
+using AutoMapper;
+using CallCenter.Api.ViewModels.Mappings;
 
 namespace CallCenter.Api
 {
     public class Startup
     {
+
+        private MapperConfiguration MapperConfig { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -30,6 +35,8 @@ namespace CallCenter.Api
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            MapperConfig = AutoMapperConfiguration.Configure();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -39,6 +46,8 @@ namespace CallCenter.Api
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            
+            services.AddSingleton<IMapper>(sp => MapperConfig.CreateMapper());
 
             services.AddDbContext<CallCenterContext>();
 
