@@ -12,6 +12,7 @@ using CallCenter.Data.Repository;
 using CallCenter.Data.Seed;
 using AutoMapper;
 using CallCenter.Api.ViewModels.Mappings;
+using Swashbuckle.Swagger.Model;
 
 namespace CallCenter.Api
 {
@@ -58,6 +59,21 @@ namespace CallCenter.Api
             services.AddTransient<CallCenterContextSeedData>();
 
             services.AddMvc();
+
+
+            services.AddSwaggerGen();
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "Call Center Api",
+                    Description = "Call Center Api for the application",
+                    TermsOfService = "None"
+                });
+                //options.IncludeXmlComments(pathToDoc);
+                options.DescribeAllEnumsAsStrings();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -74,6 +90,9 @@ namespace CallCenter.Api
             app.UseMvc();
 
             seeder.EnsureSeedData().Wait();
+
+            app.UseSwagger();
+            app.UseSwaggerUi();
         }
     }
 }
