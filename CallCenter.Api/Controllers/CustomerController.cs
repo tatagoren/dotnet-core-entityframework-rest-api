@@ -70,7 +70,7 @@ namespace CallCenter.Api.Controllers
                     return result;
                 }
             }
-            return BadRequest("Failed To Save the customer");
+            return BadRequest(ModelState);
         }
 
         [HttpPut("{id}")]
