@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using CallCenter.Data;
+using CallCenter.Data.Repository;
+using CallCenter.Data.Seed;
 
 namespace CallCenter.Api
 {
@@ -37,11 +40,20 @@ namespace CallCenter.Api
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            services.AddDbContext<CallCenterContext>();
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICampaignRepository, CampaignRepository>();
+            services.AddScoped<ICallRepository, CallRepository>();
+
+            services.AddTransient<CallCenterContextSeedData>();
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            CallCenterContextSeedData seeder)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -51,6 +63,8 @@ namespace CallCenter.Api
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc();
+
+            seeder.EnsureSeedData().Wait();
         }
     }
 }

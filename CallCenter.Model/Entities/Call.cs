@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CallCenter.Model.Entities
 {
-    public class Call
+    public class Call : IEntityBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
