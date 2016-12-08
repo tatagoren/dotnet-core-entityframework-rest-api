@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CallCenter.Api", "CallCenter.Api\CallCenter.Api.xproj", "{BC48B1F8-B62C-4477-A2CE-EFCBFE61CE23}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CallCenter.Model", "CallCenter.Model\CallCenter.Model.xproj", "{92E9F888-5379-467B-93FA-91F6A96ABB2B}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CallCenter.Data", "CallCenter.Data\CallCenter.Data.xproj", "{F25DBCD4-7CD8-4D9B-B171-92A021DAE4C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC48B1F8-B62C-4477-A2CE-EFCBFE61CE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC48B1F8-B62C-4477-A2CE-EFCBFE61CE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC48B1F8-B62C-4477-A2CE-EFCBFE61CE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC48B1F8-B62C-4477-A2CE-EFCBFE61CE23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E9F888-5379-467B-93FA-91F6A96ABB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E9F888-5379-467B-93FA-91F6A96ABB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E9F888-5379-467B-93FA-91F6A96ABB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E9F888-5379-467B-93FA-91F6A96ABB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F25DBCD4-7CD8-4D9B-B171-92A021DAE4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25DBCD4-7CD8-4D9B-B171-92A021DAE4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25DBCD4-7CD8-4D9B-B171-92A021DAE4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25DBCD4-7CD8-4D9B-B171-92A021DAE4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
