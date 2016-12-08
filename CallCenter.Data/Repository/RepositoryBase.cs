@@ -45,6 +45,20 @@ namespace CallCenter.Data.Repository
             return _context.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
+        public virtual int Count()
+        {
+            return _context.Set<T>().Count();
+        }
+        public virtual IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query.AsEnumerable();
+        }
+
         public void Update(T entity)
         {
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);

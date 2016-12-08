@@ -13,6 +13,8 @@ namespace CallCenter.Data.Repository
         T GetSingle(int id);
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
         void Add(T entity);
+        int Count();
+        IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
         void Update(T entity);
         void Delete(T entity);
         void DeleteWhere(Expression<Func<T, bool>> predicate);
