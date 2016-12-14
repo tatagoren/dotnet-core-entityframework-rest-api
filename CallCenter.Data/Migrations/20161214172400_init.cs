@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CallCenter.Data.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace CallCenter.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CallStatus = table.Column<int>(nullable: false, defaultValue: 0),
+                    CallStatus = table.Column<int>(nullable: false),
                     CampaignId = table.Column<int>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false),
                     Note = table.Column<string>(nullable: true),

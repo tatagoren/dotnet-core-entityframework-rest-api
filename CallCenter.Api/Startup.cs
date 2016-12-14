@@ -13,6 +13,7 @@ using CallCenter.Data.Seed;
 using AutoMapper;
 using CallCenter.Api.ViewModels.Mappings;
 using Swashbuckle.Swagger.Model;
+using CallCenter.Data.Settings;
 
 namespace CallCenter.Api
 {
@@ -20,6 +21,8 @@ namespace CallCenter.Api
     {
 
         private MapperConfiguration MapperConfig { get; set; }
+
+        public IConfigurationRoot Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -38,13 +41,18 @@ namespace CallCenter.Api
             Configuration = builder.Build();
 
             MapperConfig = AutoMapperConfiguration.Configure();
+           
+
+
         }
 
-        public IConfigurationRoot Configuration { get; }
+        
 
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
+            services.AddOptions();
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             
@@ -59,6 +67,8 @@ namespace CallCenter.Api
             services.AddTransient<CallCenterContextSeedData>();
 
             services.AddMvc();
+
+            
 
 
             services.AddSwaggerGen();
@@ -87,10 +97,17 @@ namespace CallCenter.Api
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseMvc();
+            app.UseMvc(config =>
+            {
+                config.MapRoute(
+                    name: "Default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "App", action = "Index" }
+                    );
+            });
 
             seeder.EnsureSeedData().Wait();
-
+            
             app.UseSwagger();
             app.UseSwaggerUi();
         }

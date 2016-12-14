@@ -1,10 +1,9 @@
-﻿using System;
+﻿using CallCenter.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq.Expressions;
-using CallCenter.Model.Entities;
 
 namespace CallCenter.Data.Repository
 {
@@ -12,9 +11,9 @@ namespace CallCenter.Data.Repository
     {
         public CallRepository(CallCenterContext context) : base(context)
         {
-            
+
         }
 
-        
+
     }
 }

@@ -17,15 +17,18 @@ namespace CallCenter.Data.Seed
 
         public async Task EnsureSeedData()
         {
-            
-                if (!_context.Customers.Any())
+
+
+
+            if (!_context.Customers.Any())
             {
                 var customer1 = new Customer()
                 {
                     Name = "Tan",
                     Surname = "Atagoren",
                     Phone = "5333762983",
-                    Email = "tan@gmail.com"
+                    Email = "tan@gmail.com",
+                    
                 };
 
                 var customer2 = new Customer()
@@ -47,7 +50,6 @@ namespace CallCenter.Data.Seed
                 _context.Customers.Add(customer1);
                 _context.Customers.Add(customer2);
                 _context.Customers.Add(customer3);
-
             }
 
             if (!_context.Campaigns.Any())
@@ -103,8 +105,10 @@ namespace CallCenter.Data.Seed
                 _context.Calls.Add(call2);
                 _context.Calls.Add(call3);
             }
+            await _context.SaveChangesAsync();
 
-            
+
+
         }
     }
 }

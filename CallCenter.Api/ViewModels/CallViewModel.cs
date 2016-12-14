@@ -19,11 +19,7 @@ namespace CallCenter.Api.ViewModels
 
         public int CustomerId { get; set; }
 
-        public CustomerViewModel Customer { get; set; }
-
         public int CampaignId { get; set; }
-
-        public CampaignViewModel Campaign { get; set; }
 
         public string UserName { get; set; }
     }

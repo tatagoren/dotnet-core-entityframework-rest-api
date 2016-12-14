@@ -21,9 +21,7 @@ namespace CallCenter.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CallStatus")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(0);
+                    b.Property<int>("CallStatus");
 
                     b.Property<int>("CampaignId");
 

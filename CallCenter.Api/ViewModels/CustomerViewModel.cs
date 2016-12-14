@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CallCenter.Api.ViewModels
 {
-    public class CustomerViewModel
+    public class CustomerViewModel 
     {
 
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Name cannot be empty")]
         public string Name { get; set; }
 
         [Required]
@@ -22,5 +22,7 @@ namespace CallCenter.Api.ViewModels
 
         [EmailAddress]
         public string Email { get; set; }
+
+        
     }
 }

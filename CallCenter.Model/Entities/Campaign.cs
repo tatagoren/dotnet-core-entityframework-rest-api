@@ -28,5 +28,6 @@ namespace CallCenter.Model.Entities
         public DateTime ExpirationDate { get; set; }
 
         public ICollection<Call> Calls { get; set; }
+
     }
 }

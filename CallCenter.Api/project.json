@@ -19,6 +19,7 @@
     "AutoMapper": "5.2.0",
     "Swashbuckle.SwaggerGen": "6.0.0-beta902",
     "Swashbuckle.SwaggerUi": "6.0.0-beta902",
+    "FluentValidation": "6.4.0-beta3",
     "CallCenter.Data": "1.0.0-*",
     "CallCenter.Model": "1.0.0-*"
   },

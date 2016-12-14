@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CallCenter.Api.Controllers
 {
-    [Route("api/customer")]
+    [Route("api/[controller]")]
     public class CustomerController : Controller
     {
         private ICustomerRepository _customerRepository;
@@ -27,12 +27,14 @@ namespace CallCenter.Api.Controllers
             _mapper = mapper;
         }
 
+
         [HttpGet("")]
         public IActionResult Get()
         {
             try
             {
-                IEnumerable<Customer> _customers = _customerRepository.GetAll().ToList();
+                //IEnumerable<Customer> _customers = _customerRepository.AllIncluding(t => t.Calls);
+                IEnumerable<Customer> _customers = _customerRepository.GetAll();
                 IEnumerable<CustomerViewModel> _customersViewModel = _mapper.Map<IEnumerable<CustomerViewModel>>(_customers);
                 return new OkObjectResult(_customersViewModel);
             }
@@ -42,8 +44,7 @@ namespace CallCenter.Api.Controllers
             }
         }
 
-
-        [HttpGet("{id}", Name = "GetCustomer")]
+        [HttpGet("{id}", Name ="GetCustomer")]
         public IActionResult Get(int id)
         {
             Customer _customer = _customerRepository.GetSingle(id);
@@ -53,6 +54,21 @@ namespace CallCenter.Api.Controllers
             }
             CustomerViewModel _customerViewModel = _mapper.Map<CustomerViewModel>(_customer);
             return new OkObjectResult(_customerViewModel);
+        }
+
+        // GET api/Issues/special/5
+        [HttpGet("{id}/calls")]
+        public IActionResult GetDetail(int id)
+        {
+            Customer _customer = _customerRepository.GetSingle(id);
+            if (_customer == null)
+            {
+                return NotFound();
+            }
+            IEnumerable<CallViewModel> _callsViewModel = _mapper.Map<IEnumerable<CallViewModel>>(_callRepository.FindBy(c => c.CustomerId == id));
+            //IEnumerable<Call> _calls = _callRepository.GetAll();
+            //IEnumerable<CallViewModel> _callsviewModel = _mapper.Map<IEnumerable<CallViewModel>>(_calls);
+            return new OkObjectResult(_callsViewModel);
         }
 
         [HttpPost("")]
@@ -105,7 +121,6 @@ namespace CallCenter.Api.Controllers
                 return NotFound();
             }
 
-            _callRepository.DeleteWhere(c => c.CustomerId == _customer.Id);
             _customerRepository.Delete(_customer);
             if (await _customerRepository.Commit())
             {

@@ -32,5 +32,6 @@ namespace CallCenter.Model.Entities
         public string Note { get; set; }
 
         public ICollection<Call> Calls { get; set; }
+
     }
 }

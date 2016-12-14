@@ -11,6 +11,7 @@ namespace CallCenter.Data.Repository
     {
         IEnumerable<T> GetAll();
         T GetSingle(int id);
+        T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
         void Add(T entity);
         int Count();

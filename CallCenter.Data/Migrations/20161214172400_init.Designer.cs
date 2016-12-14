@@ -8,8 +8,8 @@ using CallCenter.Data;
 namespace CallCenter.Data.Migrations
 {
     [DbContext(typeof(CallCenterContext))]
-    [Migration("20161208152005_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20161214172400_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,9 +22,7 @@ namespace CallCenter.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CallStatus")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(0);
+                    b.Property<int>("CallStatus");
 
                     b.Property<int>("CampaignId");
 
